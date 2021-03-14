@@ -8,21 +8,26 @@ trigger:
 # Agent VM image name
 pool:
   vmImageName: 'ubuntu-latest'
+stages:
+  - stage: Test
+    jobs:
+      - job: 
 
-  steps:
-  - task: TerraformTaskV1@0
-    inputs:
-      provider: 'azurerm'
-      command: 'init'
-      backendServiceArm: 'Terrform SC'
-      backendAzureRmResourceGroupName: 'A9-ANSIBLE01-TEST'
-      backendAzureRmStorageAccountName: 'a9diagstorage'
-      backendAzureRmContainerName: 'bootdiagnostics-a2wpsap9g-95afc847-ffc4-4cb5-a200-1962088b8d87'
-      backendAzureRmKey: 'tf/terraform.tfstate'
 
-  - task: TerraformTaskV1@0
-    inputs:
-      provider: 'azurerm'
-      command: 'apply'
-      commandOptions: '-var="subscriptionID=$(subscriptionID)" -var="network_interface_id=$(network_interface_id)"'
-      environmentServiceNameAzureRM: 'Terrform SC'
+        steps:
+        - task: TerraformTaskV1@0
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            backendServiceArm: 'Terrform SC'
+            backendAzureRmResourceGroupName: 'A9-ANSIBLE01-TEST'
+            backendAzureRmStorageAccountName: 'a9diagstorage'
+            backendAzureRmContainerName: 'bootdiagnostics-a2wpsap9g-95afc847-ffc4-4cb5-a200-1962088b8d87'
+            backendAzureRmKey: 'tf/terraform.tfstate'
+
+        - task: TerraformTaskV1@0
+          inputs:
+            provider: 'azurerm'
+            command: 'apply'
+            commandOptions: '-var="subscriptionID=$(subscriptionID)" -var="network_interface_id=$(network_interface_id)"'
+            environmentServiceNameAzureRM: 'Terrform SC'
