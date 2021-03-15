@@ -30,5 +30,6 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'apply'
+            workingDirectory: "Part-I-Tools/Azure Pipelines/VM"
             commandOptions: '-var="subscriptionID=$(subscriptionID)" -var="network_interface_id=$(network_interface_id)"'
             environmentServiceNameAzureRM: 'Terrform SC'
