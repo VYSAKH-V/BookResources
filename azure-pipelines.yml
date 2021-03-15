@@ -19,6 +19,7 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'init'
+            workingDirectory: "Part-I-Tools/Azure Pipelines/VM"
             backendServiceArm: 'Terrform SC'
             backendAzureRmResourceGroupName: 'A9-ANSIBLE01-TEST'
             backendAzureRmStorageAccountName: 'a9diagstorage'
